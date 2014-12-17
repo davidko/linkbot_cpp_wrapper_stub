@@ -14,9 +14,9 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    Linkbot *l = new Linkbot(argv[1]);
+    Linkbot *l = new Linkbot();
     sleep(2);
-    l->connect();
+    l->connect(argv[1]);
     l->setJointMovementStateNB(ROBOT_JOINT1, ROBOT_FORWARD);
     sleep(3);
     l->setJointMovementStateNB(ROBOT_JOINT1, ROBOT_BACKWARD);

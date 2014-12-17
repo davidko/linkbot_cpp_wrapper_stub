@@ -45,13 +45,9 @@ void _jointEventCB(int joint, c_impl::barobo::JointState::Type state, int timest
     l->jointEventCB(joint, state);
 }
 
-Linkbot::Linkbot(const char* serialId)
+Linkbot::Linkbot()
 {
-    std::cout << "In cons..." << std::endl;
     m = new LinkbotImpl();
-    std::cout << "Creating impl..." << std::endl;
-    m->linkbot = c_impl::linkbotNew(serialId);
-    std::cout << "setting joint states..." << std::endl;
     for(int i = 0; i < 3; i++) {
         m->jointStates[i] = c_impl::barobo::JointState::STOP;
     }
@@ -63,8 +59,9 @@ Linkbot::~Linkbot()
     delete m;
 }
 
-void Linkbot::connect()
+void Linkbot::connect(const char* serialId)
 {
+    m->linkbot = c_impl::linkbotNew(serialId);
     c_impl::linkbotConnect(m->linkbot);
     /* Enable joint callbacks */
     c_impl::linkbotSetJointEventCallback(m->linkbot, _jointEventCB, m);

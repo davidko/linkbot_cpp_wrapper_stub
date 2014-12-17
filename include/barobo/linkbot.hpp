@@ -24,9 +24,9 @@ typedef enum robotJointState_e
 struct LinkbotImpl;
 class Linkbot {
     public:
-        Linkbot(const char* serialID);
+        Linkbot();
         ~Linkbot();
-        void connect();
+        void connect(const char* serialID);
 
         /* GETTERS */
 

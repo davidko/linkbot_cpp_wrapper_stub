@@ -14,9 +14,9 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
-    Linkbot *l = new Linkbot(argv[1]);
+    Linkbot *l = new Linkbot();
     sleep(2);
-    l->connect();
+    l->connect(argv[1]);
     l->move(90, 90, 90);
     l->move(-90, -90, -90);
     l->setMovementStateTime(

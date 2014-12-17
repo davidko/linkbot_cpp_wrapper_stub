@@ -15,11 +15,11 @@ int main(int argc, char *argv[]) {
     }
 
     std::cout << "Creating new linkbot..." << std::endl;
-    Linkbot *l = new Linkbot(argv[1]);
+    Linkbot *l = new Linkbot();
     std::cout << "sleeping..." << std::endl;
     sleep(2);
     std::cout << "Connecting..." << std::endl;
-    l->connect();
+    l->connect(argv[1]);
 
     std::cout << "Setting motor power..." << std::endl;
     for(double p = -1; p < 1.0; p += 0.01) {
