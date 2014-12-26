@@ -1,18 +1,18 @@
 cmake_minimum_required(VERSION 2.8.12) 
 project(liblinkbot CXX)
 
+# Give subprojects access to LinkbotLabs.cmake
+list(INSERT CMAKE_MODULE_PATH 0 "${PROJECT_SOURCE_DIR}/../cmake-modules")
+
+include(LinkbotLabs)
+ll_add_dependency(baromesh/library baromesh)
+
 if(CMAKE_CROSSCOMPILING)
     find_library(PTHREAD pthread ${CMAKE_PREFIX_PATH} REQUIRED)
     #set(Boost_COMPILER -gcc)
     #add_compile_options(${CMAKE_CROSSCOMPILE_C_FLAGS})
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_CROSSCOMPILE_C_FLAGS} -static-libstdc++ -static-libgcc")
 endif(CMAKE_CROSSCOMPILING)
-
-#add_subdirectory(../deps/cxx-util cxx-util)
-#add_subdirectory(../deps/libsfp libsfp)
-#add_subdirectory(../deps/ribbon-bridge ribbon-bridge)
-#add_subdirectory(../deps/ribbon-bridge-interfaces ribbon-bridge-interfaces)
-add_subdirectory(../deps/baromesh baromesh)
 
 ##############################################################################
 # Boost
